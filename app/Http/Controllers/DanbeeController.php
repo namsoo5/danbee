@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\USERINFO;
-use Illuminate\Support\Facades\DB;
 class DanbeeController extends Controller
 {
 	const RESULT_SUCCESS=777;
@@ -53,8 +52,9 @@ class DanbeeController extends Controller
 	# Modify User Info
 	public function borrow($userid, $kickid)
 	{
-
-		DB::table('userinfos')->where('userid', $userid)->update(["kickid"=>$kickid]);
+		$user = USERINFO::find($userid);
+		$user->kickid = $kickid;
+		$user->save();
 		return array(
 			"kickid"=>$kickid
 		);
