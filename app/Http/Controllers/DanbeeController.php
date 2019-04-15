@@ -23,12 +23,14 @@ class DanbeeController extends Controller
 			"userid"=>$db[0]->userid,
 			"phone"=>$db[0]->phone,
 			"time"=>$db[0]->time,
-			"kickid"=>$db[0]->kickid
+			"kickid"=>$db[0]->kickid,
+			"name"=>$db[0]->name,
+			"gender"=>$db[0]->gender
 		);
 	}
 
 	# Sign Up
-	public function signup($userid, $pw, $phone)
+	public function signup($userid, $pw, $phone, $name, $gender)
 	{
 		$db = USERINFO::where('userid', $userid)->get();
 		if($db->isEmpty()){
@@ -36,6 +38,8 @@ class DanbeeController extends Controller
 			$user->userid = $userid;
 			$user->pw = $pw;
 			$user->phone = $phone;
+			$user->name = $name;
+			$user->gender = $gender;
 			$user->save();
 
 			return array(

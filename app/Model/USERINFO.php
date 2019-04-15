@@ -9,6 +9,6 @@ class USERINFO extends Model
 	protected $table = 'userinfos';
 	public $timestamps = false;
 	protected $primaryKey = 'userid';
-	protected $fillable = ['userid', 'pw', 'phone', 'kickid'];
+	protected $fillable = ['userid', 'pw', 'phone', 'kickid', 'name', 'gender'];
 
 }
