@@ -20,7 +20,7 @@ class DanbeeController extends Controller
 		}
 		return array(
 			"result"=>self::RESULT_SUCCESS,
-			"userid"=>$db[0]->userid,
+			"userid"=>$userid,
 			"phone"=>$db[0]->phone,
 			"time"=>$db[0]->time,
 			"kickid"=>$db[0]->kickid,
@@ -63,4 +63,33 @@ class DanbeeController extends Controller
 			"kickid"=>$kickid
 		);
 	}
+
+	# Login
+	public function login($userid, $pw)
+	{
+		$db = USERINFO::where('userid', $userid)->get();
+		if($db[0]->pw == $pw){
+			return array(
+				"result"=>self::RESULT_SUCCESS,
+				"userid"=>$userid,
+				"phone"=>$db[0]->phone,
+				"time"=>$db[0]->time,
+				"kickid"=>$db[0]->kickid,
+				"name"=>$db[0]->name,
+				"gender"=>$db[0]->gender
+			);
+		}
+		return array(
+			"result"=>self::RESULT_ERR,
+		);
+	}
+
+	# All User
+	public function alluser(){
+
+		$users = USERINFO::get();
+		return $users; 
+	}
+
+
 }

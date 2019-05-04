@@ -22,3 +22,7 @@ Route::get('user/find/{userid}', 'DanbeeController@search');
 Route::get('user/signup/{userid}/{pw}/{phone}/{name}/{gender}', 'DanbeeController@signup');
 #start kickboard
 Route::get('user/borrow/{userid}/{kickid}', 'DanbeeController@borrow');
+#all user
+Route::get('user/list', 'DanbeeController@alluser');
+#login
+Route::get('user/login/{userid}/{pw}', 'DanbeeController@login');
