@@ -26,3 +26,6 @@ Route::get('user/borrow/{userid}/{kickid}', 'DanbeeController@borrow');
 Route::get('user/list', 'DanbeeController@alluser');
 #login
 Route::get('user/login/{userid}/{pw}', 'DanbeeController@login');
+
+#all kick
+Route::get('kick/list', 'KickController@allkick');
