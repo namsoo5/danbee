@@ -96,7 +96,8 @@ class DanbeeController extends Controller
 		}
 		return array(
 			"result"=>self::RESULT_SUCCESS,
-			"data"=>$users; 
+			"data"=>$users
+		); 
 	}
 
 
