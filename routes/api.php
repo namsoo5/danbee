@@ -29,3 +29,6 @@ Route::get('user/login/{userid}/{pw}', 'DanbeeController@login');
 
 #all kick
 Route::get('kick/list', 'KickController@allkick');
+
+#all notice
+Route::get('notice/list', 'NoticeController@allnotice');

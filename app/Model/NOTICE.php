@@ -9,5 +9,5 @@ class Notice extends Model
 	protected $table = 'notices';
 	public $timestamps = false;
 	protected $primarhKey = 'id';
-	protected $fillable = ['id', 'time', 'title', 'content']
+	protected $fillable = ['id', 'time', 'title', 'content'];
 }
