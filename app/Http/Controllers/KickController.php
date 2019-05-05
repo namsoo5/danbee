@@ -16,7 +16,7 @@ class KickController extends Controller
     {
 
 	    $kicks = KICK::get();
-	    if($kicks->isEmpty){
+	    if($kicks->isEmpty()){
 		    return array(
 			    "result"=>self::RESULT_ERR
 		    );
