@@ -20,6 +20,7 @@ class KickController extends Controller
 		    return array(
 			    "result"=>self::RESULT_ERR
 		    );
+	    }
 	    return array(
 		    "result"=>self::RESULT_SUCCESS,
 		    "data"=>$kicks
