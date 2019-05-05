@@ -60,6 +60,7 @@ class DanbeeController extends Controller
 		$user->kickid = $kickid;
 		$user->save();
 		return array(
+			"result"=>self::RESULT_SUCCESS,
 			"kickid"=>$kickid
 		);
 	}
@@ -88,7 +89,14 @@ class DanbeeController extends Controller
 	public function alluser(){
 
 		$users = USERINFO::get();
-		return $users; 
+		if($users->isEmpty()){
+			return array(
+				"result"=>self::RESULT_ERR
+			);
+		}
+		return array(
+			"result"=>self::RESULT_SUCCESS,
+			"data"=>$users; 
 	}
 
 
