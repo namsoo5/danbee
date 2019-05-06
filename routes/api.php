@@ -32,3 +32,5 @@ Route::get('kick/list', 'KickController@allkick');
 
 #all notice
 Route::get('notice/list', 'NoticeController@allnotice');
+#insert notice
+Route::get('notice/insert/{title}&{content}', 'NoticeController@insertnotice');
