@@ -8,29 +8,22 @@ class DanbeeController extends Controller
 	const RESULT_SUCCESS=777;
 	const RESULT_ERR=404;
 
-	# User search
+	# User search and overlap id check
 	public function search($userid)
 	{
 		$db = USERINFO::where('userid', $userid)->get();
-		if($db->isEmpty()){
+		if(empty($db)){
 			return array(
 				"result"=>self::RESULT_ERR,
-				"message"=>"not exist user ID"
 			);
 		}
 		return array(
 			"result"=>self::RESULT_SUCCESS,
-			"userid"=>$userid,
-			"phone"=>$db[0]->phone,
-			"time"=>$db[0]->time,
-			"kickid"=>$db[0]->kickid,
-			"name"=>$db[0]->name,
-			"gender"=>$db[0]->gender
 		);
 	}
 
 	# Sign Up
-	public function signup($userid, $pw, $phone, $name, $gender)
+	public function signup($userid, $pw, $phone, $name, $gender, $birth)
 	{
 		$db = USERINFO::where('userid', $userid)->get();
 		if($db->isEmpty()){
@@ -40,16 +33,15 @@ class DanbeeController extends Controller
 			$user->phone = $phone;
 			$user->name = $name;
 			$user->gender = $gender;
+			$user->birth = $birth;
 			$user->save();
 
 			return array(
 				"result"=>self::RESULT_SUCCESS,
-				"message"=>"new user"
 			);
 		}
 		return array(
 			"result"=>self::RESULT_ERR,
-			"message"=>"exist user ID"
 		);
 	}
 
@@ -69,16 +61,28 @@ class DanbeeController extends Controller
 	public function login($userid, $pw)
 	{
 		$db = USERINFO::where('userid', $userid)->get();
+		# no exist id
+		if(empty($db)){
+			return array(
+				"result"=>self::RESULT_ERR,
+				"data"=>array()
+			);
+		}
+
+		# success
 		if($db[0]->pw == $pw){
 			return array(
 				"result"=>self::RESULT_SUCCESS,
+				"data"=>array(
 				"userid"=>$userid,
 				"phone"=>$db[0]->phone,
 				"time"=>$db[0]->time,
 				"kickid"=>$db[0]->kickid,
 				"name"=>$db[0]->name,
-				"gender"=>$db[0]->gender
-			);
+				"gender"=>$db[0]->gender,
+				"birth"=>$db[0]->birth
+			)
+		);
 		}
 		return array(
 			"result"=>self::RESULT_ERR,
@@ -89,7 +93,7 @@ class DanbeeController extends Controller
 	public function alluser(){
 
 		$users = USERINFO::get();
-		if($users->isEmpty()){
+		if(empty($users)){
 			return array(
 				"result"=>self::RESULT_ERR
 			);
