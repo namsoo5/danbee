@@ -12,7 +12,7 @@ class DanbeeController extends Controller
 	public function search($userid)
 	{
 		$db = USERINFO::where('userid', $userid)->get();
-		if(empty($db)){
+		if($db->isEmpty()){
 			return array(
 				"result"=>self::RESULT_ERR,
 			);
@@ -49,6 +49,13 @@ class DanbeeController extends Controller
 	public function borrow($userid, $kickid)
 	{
 		$user = USERINFO::find($userid);
+		#find 는 empty()로 확인
+		if(empty($user)){
+			return array(
+				"result"=>self::RESULT_ERR,
+				"kickid"=>""
+			);
+		}
 		$user->kickid = $kickid;
 		$user->save();
 		return array(
@@ -62,7 +69,7 @@ class DanbeeController extends Controller
 	{
 		$db = USERINFO::where('userid', $userid)->get();
 		# no exist id
-		if(empty($db)){
+		if($db->isEmpty){
 			return array(
 				"result"=>self::RESULT_ERR,
 				"data"=>array()
@@ -93,7 +100,7 @@ class DanbeeController extends Controller
 	public function alluser(){
 
 		$users = USERINFO::get();
-		if(empty($users)){
+		if($users->isEmpty()){
 			return array(
 				"result"=>self::RESULT_ERR
 			);

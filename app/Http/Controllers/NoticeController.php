@@ -14,7 +14,7 @@ class NoticeController extends Controller
 	public function allnotice()
 	{
 		$db = NOTICE::get();
-		if(empty($db)){
+		if($db->isEmpty())){
 			return array(
 				"result"=>self::RESULT_ERR
 			);
