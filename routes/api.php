@@ -20,8 +20,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('user/find/{userid}', 'DanbeeController@search');
 #sign UP
 Route::get('user/signup/{userid}/{pw}/{phone}/{name}/{gender}/{birth}', 'DanbeeController@signup');
+
 #start kickboard
-Route::get('user/borrow/{userid}/{kickid}', 'DanbeeController@borrow');
+Route::get('kick/borrow/{userid}/{kickid}', 'KickController@borrow');
+#end kickboard
+Route::get('kick/lend/{userid}', 'KickController@lend');
+#set kick status
+Route::get('kick/set/{kickid}', 'KickController@setStatus');
+
 #all user
 Route::get('user/list', 'DanbeeController@alluser');
 #login

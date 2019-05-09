@@ -45,25 +45,6 @@ class DanbeeController extends Controller
 		);
 	}
 
-	# Modify User Info
-	public function borrow($userid, $kickid)
-	{
-		$user = USERINFO::find($userid);
-		#find 는 empty()로 확인
-		if(empty($user)){
-			return array(
-				"result"=>self::RESULT_ERR,
-				"kickid"=>""
-			);
-		}
-		$user->kickid = $kickid;
-		$user->save();
-		return array(
-			"result"=>self::RESULT_SUCCESS,
-			"kickid"=>$kickid
-		);
-	}
-
 	# Login
 	public function login($userid, $pw)
 	{
