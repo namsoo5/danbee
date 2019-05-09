@@ -20,6 +20,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('user/find/{userid}', 'DanbeeController@search');
 #sign UP
 Route::get('user/signup/{userid}/{pw}/{phone}/{name}/{gender}/{birth}', 'DanbeeController@signup');
+#all user
+Route::get('user/list', 'DanbeeController@alluser');
+#login
+Route::get('user/login/{userid}/{pw}', 'DanbeeController@login');
+#find id
+Route::get('user/show&id/{name}/{phone}', 'DanbeeController@getId');
+#find pw
+Route::get('user/show&pw/{id}/{name}/{phone}/{birth}', 'DanbeeController@getPw');
 
 #start kickboard
 Route::get('kick/borrow/{userid}/{kickid}', 'KickController@borrow');
@@ -27,12 +35,6 @@ Route::get('kick/borrow/{userid}/{kickid}', 'KickController@borrow');
 Route::get('kick/lend/{userid}', 'KickController@lend');
 #set kick status
 Route::get('kick/set/{kickid}', 'KickController@setStatus');
-
-#all user
-Route::get('user/list', 'DanbeeController@alluser');
-#login
-Route::get('user/login/{userid}/{pw}', 'DanbeeController@login');
-
 #all kick
 Route::get('kick/list', 'KickController@allkick');
 

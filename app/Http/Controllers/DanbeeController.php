@@ -92,5 +92,43 @@ class DanbeeController extends Controller
 		); 
 	}
 
+	# find id
+	public function getId($name, $phone){
+		$user = USERINFO::where('name', $name)
+			->where('phone', $phone)
+			->get();
+
+		if($user->isEmpty()){
+			return array(
+				"result"=>self::RESULT_ERR,
+				"data"=>""
+			);
+		}
+
+		return array(
+			"result"=>self::RESULT_SUCCESS,
+			"data"=>$user[0]->userid
+		);
+	}
+
+	# find pw
+	public function getPw($userid, $name, $phone, $birth){
+		$user = USERINFO::find($userid);
+		if(empty($user)){
+			return array(
+				"result"=>self::RESULT_ERR
+			);
+		}
+
+		if($user->name === $name && $user->phone === $phone && $user->birth === $birth){
+			return array(
+				"result"=>self::RESULT_SUCCESS
+			);
+		}
+		return array(
+			"result"=>self::RESULT_ERR
+		);
+	}
+
 
 }
