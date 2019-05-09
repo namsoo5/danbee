@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\USERINFO;
 use App\Model\KICK;
 use Carbon\Carbon;
+use App\Model\HISTORY;
 
 class KickController extends Controller
 {
@@ -69,9 +70,21 @@ class KickController extends Controller
 	    $user->save();
 
 	    $kick = KICK::find($kickid);
+	    if(empty($kick)){
+		    return array(
+			    "result"=>self::RESULT_ERR
+		    );
+	    }
 	    $kick->status = 0;
 	    $kick->save();
+	    
 	    #history save
+	    $history = new HISTORY;
+	    $history->start = $user->time;
+	    $history->end = Carbon::now();
+	    $history->kickid = $kickid;
+	    $history->userid = $userid;
+	    $history->save();
 
 	    return array(
 		    "result"=>self::RESULT_SUCCESS
