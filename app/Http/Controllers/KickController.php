@@ -66,15 +66,17 @@ class KickController extends Controller
     public function lend($userid){
 	    $user = USERINFO::find($userid);
 	    $kickid = $user->kickid;
-	    $user->kickid = 0;
-	    $user->save();
 
 	    $kick = KICK::find($kickid);
 	    if(empty($kick)){
-		    return array(
-			    "result"=>self::RESULT_ERR
-		    );
-	    }
+                    return array(
+                            "result"=>self::RESULT_ERR
+                    );
+            }
+	    
+	    $user->kickid = 0;
+	    $user->save();
+
 	    $kick->status = 0;
 	    $kick->save();
 	    

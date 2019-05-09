@@ -40,3 +40,7 @@ Route::get('kick/list', 'KickController@allkick');
 Route::get('notice/list', 'NoticeController@allnotice');
 #insert notice
 Route::get('notice/insert/{title}&{content}', 'NoticeController@insertnotice');
+
+#all history
+Route::get('history/list', 'HistoryController@allHistory');
+
