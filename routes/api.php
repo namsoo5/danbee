@@ -30,7 +30,7 @@ Route::get('user/show&id/{name}/{phone}', 'DanbeeController@getId');
 Route::get('user/show&pw/{id}/{name}/{phone}/{birth}', 'DanbeeController@getPw');
 
 #start kickboard
-Route::get('kick/borrow/{userid}/{kickid}', 'KickController@borrow');
+Route::get('kick/borrow/{kickid}/{userid}', 'KickController@borrow');
 #end kickboard
 Route::get('kick/lend/{userid}', 'KickController@lend');
 #set kick status

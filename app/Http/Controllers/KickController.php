@@ -31,7 +31,7 @@ class KickController extends Controller
     }
 
     # borrow kick
-    public function borrow($userid, $kickid){
+    public function borrow($kickid, $userid){
 	    $user = USERINFO::find($userid);
 	    $kick = KICK::find($kickid);
 
