@@ -50,7 +50,7 @@ class DanbeeController extends Controller
 	{
 		$db = USERINFO::where('userid', $userid)->get();
 		# no exist id
-		if($db->isEmpty){
+		if($db->isEmpty()){
 			return array(
 				"result"=>self::RESULT_ERR,
 				"data"=>array()
@@ -61,16 +61,14 @@ class DanbeeController extends Controller
 		if($db[0]->pw == $pw){
 			return array(
 				"result"=>self::RESULT_SUCCESS,
-				"data"=>array(
-				"userid"=>$userid,
-				"phone"=>$db[0]->phone,
-				"time"=>$db[0]->time,
-				"kickid"=>$db[0]->kickid,
-				"name"=>$db[0]->name,
-				"gender"=>$db[0]->gender,
-				"birth"=>$db[0]->birth
-			)
-		);
+				"data"=>array(array(
+					"userid"=>$userid,
+					"phone"=>$db[0]->phone,
+					"name"=>$db[0]->name,
+					"gender"=>$db[0]->gender,
+					"birth"=>$db[0]->birth
+				))
+			);
 		}
 		return array(
 			"result"=>self::RESULT_ERR,
