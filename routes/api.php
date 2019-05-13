@@ -28,6 +28,8 @@ Route::get('user/login/{userid}/{pw}', 'DanbeeController@login');
 Route::get('user/show&id/{name}/{phone}', 'DanbeeController@getId');
 #find pw
 Route::get('user/show&pw/{id}/{name}/{phone}/{birth}', 'DanbeeController@getPw');
+#change pw
+Route::get('user/change/{userid}/{pw}', 'DanbeeController@changePw');
 
 #start kickboard
 Route::get('kick/borrow/{kickid}/{userid}', 'KickController@borrow');
@@ -45,6 +47,17 @@ Route::get('notice/list', 'NoticeController@allnotice');
 #insert notice
 Route::get('notice/insert/{title}&{content}', 'NoticeController@insertnotice');
 
+
 #all history
 Route::get('history/list', 'HistoryController@allHistory');
 
+#question list
+Route::get('question/list', 'QuestionController@allQuestion');
+#insert question
+Route::get('question/new/{userid}/{title}/{content}', 'QuestionController@newQuestion');
+#answer list
+Route::get('answer/list', 'QuestionController@allAnswer');
+#insert answer
+Route::get('answer/new/{qid}/{userid}/{content}', 'QuestionController@newAnswer');
+#get answer
+Route::get('answer/get/{qid}', 'QuestionController@getAnswer');

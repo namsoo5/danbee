@@ -128,5 +128,16 @@ class DanbeeController extends Controller
 		);
 	}
 
+	# change pw
+	public function changePw($userid, $pw){
+		$user = USERINFO::find($userid);
+		
+		$user->pw = $pw;
+		$user->save();
+		return array(
+			"result"=>self::RESULT_SUCCESS
+		);	
+	}
+
 
 }
