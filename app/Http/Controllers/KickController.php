@@ -116,4 +116,21 @@ class KickController extends Controller
 	    );
     }
 
+    # get kick battery
+    public function getBattery($kickid){
+	    $kick = KICK::find($kickid);
+
+	    if(empty($kick)){
+		    return array(
+			    "result"=>self::RESULT_ERR,
+			    "battery"=>0
+		    );
+	    }
+
+	    return array(
+		    "result"=>self::RESULT_SUCCESS,
+		    "battery"=>$kick->battery
+	    );
+    }
+
 }

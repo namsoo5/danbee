@@ -37,6 +37,8 @@ Route::get('kick/lend/{userid}', 'KickController@lend');
 Route::get('kick/set/{kickid}', 'KickController@setStatus');
 #all kick
 Route::get('kick/list', 'KickController@allkick');
+#get battery
+Route::get('kick/battery/{kickid}', 'KickController@getBattery');
 
 #all notice
 Route::get('notice/list', 'NoticeController@allnotice');
