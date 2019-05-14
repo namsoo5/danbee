@@ -139,5 +139,25 @@ class DanbeeController extends Controller
 		);	
 	}
 
+	# sns signup
+	public function snsSignup($userid, $name, $gender){
+		$db = USERINFO::find($userid);
+		if(empty($db)){
+			$user = new USERINFO;
+			$user->userid = $userid;
+			$user->name = $name;
+			$user->gender = $gender;
+			$user->save();
+
+			return array(
+				"result"=>self::RESULT_SUCCESS
+			);
+
+		}
+		return array(
+			"result"=>self::RESULT_ERR
+		);
+	}
+
 
 }
