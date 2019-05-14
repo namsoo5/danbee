@@ -25,5 +25,19 @@ class HistoryController extends Controller
 		);
 	}
 
+	# user history
+	public function userHistory($userid){
+		$db = HISTORY::where('userid', $userid)->get(); 
+		if($db->isEmpty()){
+			return array(
+				"result"=>self::RESULT_ERR,
+				"data"=>array()
+			);
+		}
 
+		return array(
+			"result"=>self::RESULT_SUCCESS,
+			"data"=>$db
+		);
+	}
 }

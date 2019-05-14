@@ -50,7 +50,8 @@ Route::get('notice/insert/{title}&{content}', 'NoticeController@insertnotice');
 
 #all history
 Route::get('history/list', 'HistoryController@allHistory');
-
+#user history
+Route::get('history/user/{userid}', 'HistoryController@userHistory');
 #question list
 Route::get('question/list', 'QuestionController@allQuestion');
 #insert question
