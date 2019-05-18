@@ -133,4 +133,39 @@ class KickController extends Controller
 	    );
     }
 
+    # set kick battery
+    public function setBattery($kickid, $battery){
+	    $kick = KICK::find($kickid);
+
+	    if(empty($kick)){
+		    return array(
+			    "result"=>self::RESULT_ERR,
+		    );
+	    }
+
+	    $kick->battery = $battery;
+	    $kick->save();
+
+	    return array(
+		    "result"=>self::RESULT_SUCCESS
+	    );
+    }
+
+    # get kick lock status
+    public function getStatus($kickid) {
+
+	    $kick = KICK::find($kickid);
+
+            if(empty($kick)){
+                    return array(
+			    "result"=>self::RESULT_ERR,
+			    "status"=>self::RESULT_ERR
+                    );
+	    }
+
+	    return array(
+		    "result"=>self::RESULT_SUCCESS,
+		    "status"=>$kick->status
+	    );
+    }
 }

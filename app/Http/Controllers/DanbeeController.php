@@ -114,17 +114,20 @@ class DanbeeController extends Controller
 		$user = USERINFO::find($userid);
 		if(empty($user)){
 			return array(
-				"result"=>self::RESULT_ERR
+				"result"=>self::RESULT_ERR,
+				"data"=>""
 			);
 		}
 
 		if($user->name === $name && $user->phone === $phone && $user->birth === $birth){
 			return array(
-				"result"=>self::RESULT_SUCCESS
+				"result"=>self::RESULT_SUCCESS,
+				"data"=>"success"
 			);
 		}
 		return array(
-			"result"=>self::RESULT_ERR
+			"result"=>self::RESULT_ERR,
+			"data"=>""
 		);
 	}
 

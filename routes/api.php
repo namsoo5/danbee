@@ -42,7 +42,11 @@ Route::get('kick/set/{kickid}', 'KickController@setStatus');
 #all kick
 Route::get('kick/list', 'KickController@allkick');
 #get battery
-Route::get('kick/battery/{kickid}', 'KickController@getBattery');
+Route::get('kick/battery/get/{kickid}', 'KickController@getBattery');
+#set battery
+Route::get('kick/battery/set/{kickid}/{battery}', 'KickController@setBattery');
+#get status
+Route::get('kick/status/{kickid}', 'KickController@getStatus');
 
 #all notice
 Route::get('notice/list', 'NoticeController@allnotice');
