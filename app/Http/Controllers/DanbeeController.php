@@ -161,6 +161,22 @@ class DanbeeController extends Controller
 			"result"=>self::RESULT_ERR
 		);
 	}
+	
+	# user delete
+	public function userDelete($userid){
 
+		$user = USERINFO::find($userid);
+
+		if(empty($user)){
+			return array(
+				"result"=>self::RESULT_ERR
+			);
+		}
+
+		$user->delete();
+		return array(
+			"result"=>self::RESULT_SUCCESS
+		);
+	}
 
 }
