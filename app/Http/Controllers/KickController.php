@@ -168,4 +168,19 @@ class KickController extends Controller
 		    "status"=>$kick->status
 	    );
     }
+
+    # set kick gps
+    public function setGps($kickid, $lat, $lng){
+
+	    $kick = KICK::find($kickid);
+
+	    $kick->latitude = $lat;
+	    $kick->longitude = $lng;
+	    $kick->save();
+
+	    return array(
+		    "result"=>self::RESULT_SUCCESS
+	    );
+    }
 }
+

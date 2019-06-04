@@ -49,6 +49,9 @@ Route::get('kick/battery/get/{kickid}', 'KickController@getBattery');
 Route::get('kick/battery/set/{kickid}/{battery}', 'KickController@setBattery');
 #get status
 Route::get('kick/status/{kickid}', 'KickController@getStatus');
+#set kick gps
+Route::get('kick/gps/{kickid}/{lat}/{lng}', 'KickController@setGps');
+
 
 #all notice
 Route::get('notice/list', 'NoticeController@allnotice');
