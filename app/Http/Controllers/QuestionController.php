@@ -20,10 +20,32 @@ class QuestionController extends Controller
 				"data"=>array()
 			);
 		}
+
+		$count = count($db);
+		$i = 0;
+
+		$arr = [];
+		while($i < $count){
+			$q_id = $db[$i]->id;
+			$answer = ANSWER::where('question_id', $q_id)->get();
+
+			$a = array(
+				"userid"=>$db[$i]->userid,
+				"title"=>$db[$i]->title,
+				"question_id"=>$q_id,
+				"question_content"=>$db[$i]->content,
+				"answer_content"=>$answer[0]->content
+			);
+			array_push($arr, $a);
+
+			$i++;
+		}
+
 		return array(
 			"result"=>self::RESULT_SUCCESS,
-			"data"=>$db
+			"data"=>$arr
 		);
+
 
 	}	
 
