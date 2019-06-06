@@ -143,13 +143,14 @@ class DanbeeController extends Controller
 	}
 
 	# sns signup
-	public function snsSignup($userid, $name, $gender){
+	public function snsSignup($userid, $name, $gender, $birth){
 		$db = USERINFO::find($userid);
 		if(empty($db)){
 			$user = new USERINFO;
 			$user->userid = $userid;
 			$user->name = $name;
 			$user->gender = $gender;
+			$user->birth = $birth;
 			$user->save();
 
 			return array(
