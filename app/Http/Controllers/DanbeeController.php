@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\USERINFO;
+use App\Model\KICK;
 class DanbeeController extends Controller
 {
 	const RESULT_SUCCESS=777;
@@ -177,6 +178,34 @@ class DanbeeController extends Controller
 		$user->delete();
 		return array(
 			"result"=>self::RESULT_SUCCESS
+		);
+	}
+	
+	# user checkState
+	public function userState($userid){
+
+		$user = USERINFO::find($userid);
+
+		if(empty($user)){
+			return array(
+				"result"=>self::RESULT_ERR,
+				"kickid"=>-1,
+				"time"=>""
+			);
+		}
+
+		if(empty($user->kickid)){
+			return array(
+				"result"=>self::RESULT_ERR,
+				"kickid"=>-1,
+				"time"=>""
+			);
+		}
+
+		return array(
+			"result"=>self::RESULT_SUCCESS,
+			"kickid"=>$user->kickid,
+			"time"=>$user->time
 		);
 	}
 

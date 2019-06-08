@@ -34,6 +34,8 @@ Route::get('user/change/{userid}/{pw}', 'DanbeeController@changePw');
 Route::get('user/sns/signup/{userid}/{name}/{gender}/{birth}', 'DanbeeController@snsSignup');
 #user delete
 Route::get('user/delete/{userid}', 'DanbeeController@userDelete');
+#user state
+Route::get('user/state/{userid}', 'DanbeeController@userState');
 
 #start kickboard
 Route::get('kick/borrow/{kickid}/{userid}', 'KickController@borrow');

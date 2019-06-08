@@ -39,6 +39,8 @@ class KickController extends Controller
 	    if(empty($kick)){
 		    return array(
 			    "result"=>self::RESULT_ERR,
+			    "battery"=>0,
+			    "time"=>""
 		    );
 	    }
 
@@ -46,18 +48,25 @@ class KickController extends Controller
 	    if($kick->status == 1){
 		    return array(
 			    "result"=>self::RESULT_REJECT,
+			    "battery"=>0,
+			    "time"=>""
 		    );
 	    }
 
 	    # success
 	    $kick->status = 1;
 	    $user->kickid = $kickid;
-	    $user->time = Carbon::now();
+	    $now = Carbon::now();
+	    $user->time = $now;
+
+
 	    $user->save();
 	    $kick->save();
 
 	    return array(
-		    "result"=>self::RESULT_SUCCESS
+		    "result"=>self::RESULT_SUCCESS,
+		    "battery"=>$kick->battery,
+		    "time"=>$now->format('Y-m-d H:i:s')
 	    );
 
     }
@@ -74,7 +83,7 @@ class KickController extends Controller
                     );
             }
 	    
-	    $user->kickid = 0;
+	    $user->kickid = -1;
 	    $user->save();
 
 	    $kick->status = 0;

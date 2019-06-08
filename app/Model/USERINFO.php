@@ -10,6 +10,6 @@ class USERINFO extends Model
 	public $timestamps = false;
 	protected $primaryKey = 'userid';
 	public $incrementing = false;  #primaryKey return 0 제거 
-	protected $fillable = ['userid', 'pw', 'phone', 'kickid', 'name', 'gender', 'birth'];
+	protected $fillable = ['userid', 'pw', 'phone', 'kickid','time', 'name', 'gender', 'birth'];
 
 }
