@@ -191,5 +191,25 @@ class KickController extends Controller
 		    "result"=>self::RESULT_SUCCESS
 	    );
     }
+
+    #get kick gps
+    public function getGps($kickid){
+
+	    $kick = KICK::find($kickid);
+
+	    if(empty($kick)){
+		    return array(
+			    "result"=>self::RESULT_ERR,
+			    "lat"=>"",
+			    "lng"=>""
+		    );
+	    }
+
+	    return array(
+		    "result"=>self::RESULT_SUCCESS,
+		    "lat"=>$kick->latitude,
+		    "lng"=>$kick->longitude
+	    );
+    }
 }
 
