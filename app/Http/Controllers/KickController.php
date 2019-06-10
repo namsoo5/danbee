@@ -193,22 +193,40 @@ class KickController extends Controller
     }
 
     #get kick gps
-    public function getGps($kickid){
+    public function getGps(){
 
-	    $kick = KICK::find($kickid);
+	    $kick = KICK::get();
 
-	    if(empty($kick)){
+	    if($kick->isEmpty()){
 		    return array(
 			    "result"=>self::RESULT_ERR,
+			    "id"=>"",
 			    "lat"=>"",
 			    "lng"=>""
 		    );
 	    }
+	
+	    $count = count($kick);
+	    $i = 0;
+	    $arr = [];
+	    while($count > $i){
+		    $kickid = $kick[$i]->kickid;
+		    $lat = $kick[$i]->latitude;
+		    $lng = $kick[$i]->longitude;
+
+		    $a = array(
+			    "kickid"=>$kickid,
+			    "lat"=>$lat,
+			    "lng"=>$lng
+		    );
+
+		    array_push($arr, $a);
+		    $i++;
+	    }
 
 	    return array(
 		    "result"=>self::RESULT_SUCCESS,
-		    "lat"=>$kick->latitude,
-		    "lng"=>$kick->longitude
+		    "data"=>$arr
 	    );
     }
 }
