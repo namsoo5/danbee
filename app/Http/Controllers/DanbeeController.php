@@ -23,7 +23,7 @@ class DanbeeController extends Controller
 		);
 	}
 
-	# Sign Up
+	# get Sign Up
 	public function signup($userid, $pw, $phone, $name, $gender, $birth)
 	{
 		$db = USERINFO::where('userid', $userid)->get();
@@ -45,6 +45,36 @@ class DanbeeController extends Controller
 			"result"=>self::RESULT_ERR,
 		);
 	}
+
+	# post Sign up
+	public function signupPost(){
+		$userid = request('userid', null);
+		$pw = request('pw',null);
+		$phone = request('phone', null);
+		$gender = request('gender', null);
+		$birth = request('birth', null);
+		$name = request('name', null);
+
+		$db = USERINFO::where('userid', $userid)->get();
+                if($db->isEmpty()){
+                        $user = new USERINFO;
+                        $user->userid = $userid;
+                        $user->pw = $pw;
+                        $user->phone = $phone;
+                        $user->name = $name;
+                        $user->gender = $gender;
+                        $user->birth = $birth;
+                        $user->save();
+
+                        return array(
+                                "result"=>self::RESULT_SUCCESS,
+                        );
+                }
+                return array(
+                        "result"=>self::RESULT_ERR,
+		);
+	}
+	
 
 	# Login
 	public function login($userid, $pw)

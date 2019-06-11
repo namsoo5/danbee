@@ -19,7 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 #user search
 Route::get('user/find/{userid}', 'DanbeeController@search');
 #sign UP
-Route::get('user/signup/{userid}/{pw}/{phone}/{name}/{gender}/{birth}', 'DanbeeController@signup');
+#Route::get('user/signup/{userid}/{pw}/{phone}/{name}/{gender}/{birth}', 'DanbeeController@signup');
+Route::post('user/signup', 'DanbeeController@signupPost');
 #all user
 Route::get('user/list', 'DanbeeController@alluser');
 #login
