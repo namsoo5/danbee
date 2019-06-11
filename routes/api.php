@@ -70,10 +70,14 @@ Route::get('history/user/{userid}', 'HistoryController@userHistory');
 #question list
 Route::get('question/list', 'QuestionController@allQuestion');
 #insert question
-Route::get('question/new/{userid}/{title}/{content}', 'QuestionController@newQuestion');
+#Route::get('question/new/{userid}/{title}/{content}', 'QuestionController@newQuestion');
+Route::post('question/new', 'QuestionController@newQuestionPost');
+
+/*
 #answer list
 Route::get('answer/list', 'QuestionController@allAnswer');
 #insert answer
 Route::get('answer/new/{qid}/{userid}/{content}', 'QuestionController@newAnswer');
 #get answer
 Route::get('answer/get/{qid}', 'QuestionController@getAnswer');
+ */

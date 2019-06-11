@@ -21,29 +21,10 @@ class QuestionController extends Controller
 			);
 		}
 
-		$count = count($db);
-		$i = 0;
-
-		$arr = [];
-		while($i < $count){
-			$q_id = $db[$i]->id;
-			$answer = ANSWER::where('question_id', $q_id)->get();
-
-			$a = array(
-				"userid"=>$db[$i]->userid,
-				"title"=>$db[$i]->title,
-				"question_id"=>$q_id,
-				"question_content"=>$db[$i]->content,
-				"answer_content"=>$answer[0]->content
-			);
-			array_push($arr, $a);
-
-			$i++;
-		}
 
 		return array(
 			"result"=>self::RESULT_SUCCESS,
-			"data"=>$arr
+			"data"=>$db
 		);
 
 
@@ -62,8 +43,26 @@ class QuestionController extends Controller
 		);
 	}
 
+	#post insert question
+	public function newQuestionPost(){
+		$userid = request('userid', null);
+		$title = request('title', null);
+		$content = request('content', null);
+
+		$question = new QUESTION;
+                $question->userid = $userid;
+                $question->title = $title;
+                $question->content = $content;
+                $question->save();
+
+                return array(
+                        "result"=>self::RESULT_SUCCESS
+		);
+	}
+
+
 	#get answer
-	public function getAnswer($qid){
+/*	public function getAnswer($qid){
 		$db = ANSWER::where('question_id', $qid)->get();
 		if($db->isEmpty()){
 			return array(
@@ -106,4 +105,5 @@ class QuestionController extends Controller
 			"data"=>$db
 		);
 	}
+*/
 }

@@ -8,5 +8,6 @@ class QUESTION extends Model
 {
 	protected $table = 'questions';
 	public $timestamps = false;
-	protected $fillable = ['question_id', 'userid', 'time', 'content'];
+	protected $primaryKey = 'id';
+	protected $fillable = ['id', 'title', 'userid', 'time', 'content'];
 }
