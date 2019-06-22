@@ -202,7 +202,8 @@ class KickController extends Controller
 			    "result"=>self::RESULT_ERR,
 			    "id"=>"",
 			    "lat"=>"",
-			    "lng"=>""
+			    "lng"=>"",
+			    "battery"=>""
 		    );
 	    }
 	
@@ -213,11 +214,13 @@ class KickController extends Controller
 		    $kickid = $kick[$i]->kickid;
 		    $lat = $kick[$i]->latitude;
 		    $lng = $kick[$i]->longitude;
-
+		    $battery = $kick[$i]->battery;
+		    
 		    $a = array(
 			    "kickid"=>$kickid,
 			    "lat"=>$lat,
-			    "lng"=>$lng
+			    "lng"=>$lng,
+			    "battery"=>$battery
 		    );
 
 		    array_push($arr, $a);
