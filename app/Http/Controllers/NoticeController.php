@@ -38,4 +38,20 @@ class NoticeController extends Controller
 			"result"=>self::RESULT_SUCCESS
 		);
 	}
+
+	#insert notice post
+	public function insertNoticePost(){
+
+		$data = new NOTICE;
+		$title = request('title', null);
+		$content = request('content', null);
+
+		$data->title = $title;
+		$data->content = $content;
+		$data->save();
+
+		return array(
+			"result"=>self::RESULT_SUCCESS
+		);
+	}
 }

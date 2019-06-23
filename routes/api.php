@@ -24,7 +24,8 @@ Route::post('user/signup', 'DanbeeController@signupPost');
 #all user
 Route::get('user/list', 'DanbeeController@alluser');
 #login
-Route::get('user/login/{userid}/{pw}', 'DanbeeController@login');
+#Route::get('user/login/{userid}/{pw}', 'DanbeeController@login');
+Route::post('user/login', 'DanbeeController@loginPost');
 #find id
 Route::get('user/show&id/{name}/{phone}', 'DanbeeController@getId');
 #find pw
@@ -60,8 +61,9 @@ Route::get('kick/gps/get', 'KickController@getGps');
 #all notice
 Route::get('notice/list', 'NoticeController@allnotice');
 #insert notice
-Route::get('notice/insert/{title}&{content}', 'NoticeController@insertnotice');
-
+#Route::get('notice/insert/{title}&{content}', 'NoticeController@insertnotice');
+#insert notice post
+Route::post('notice/insert', 'NoticeController@insertNoticePost');
 
 #all history
 Route::get('history/list', 'HistoryController@allHistory');

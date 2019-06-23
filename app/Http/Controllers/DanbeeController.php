@@ -106,6 +106,40 @@ class DanbeeController extends Controller
 		);
 	}
 
+	#Login post
+	public function loginPost(){
+		$userid = request('userid', null);
+		$db = USERINFO::where('userid', $userid)->get();
+
+		#no exist id
+		if($db->isEmpty()){
+			return array(
+				"result"=>self::RESULT_ERR,
+				"data"=>array()
+			);
+		}
+
+		#success
+		$pw = request('pw', null);
+		if($db[0]->pw == $pw){
+			return array(
+				 "result"=>self::RESULT_SUCCESS,
+                                "data"=>array(array(
+                                        "userid"=>$userid,
+                                        "phone"=>$db[0]->phone,
+                                        "name"=>$db[0]->name,
+                                        "gender"=>$db[0]->gender,
+                                        "birth"=>$db[0]->birth
+                                ))
+			);
+		}
+		return array(
+			"result"=>self::RESULT_ERR,
+			"data"=>array()
+		);
+	}
+
+
 	# All User
 	public function alluser(){
 
