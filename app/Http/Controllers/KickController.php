@@ -84,7 +84,6 @@ class KickController extends Controller
             }
 	    
 	    $user->kickid = -1;
-	    $user->save();
 
 	    $kick->status = 0;
 	    $kick->save();
@@ -97,6 +96,8 @@ class KickController extends Controller
 	    $history->userid = $userid;
 	    $history->save();
 
+	    $user->time = now();
+	    $user->save();
 	    return array(
 		    "result"=>self::RESULT_SUCCESS
 	    );
