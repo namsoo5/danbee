@@ -77,6 +77,8 @@ Route::get('question/list', 'QuestionController@allQuestion');
 #insert question
 #Route::get('question/new/{userid}/{title}/{content}', 'QuestionController@newQuestion');
 Route::post('question/new', 'QuestionController@newQuestionPost');
+#delete question
+Route::post('question/delete', 'QuestionController@deleteQuestionPost');
 
 /*
 #answer list

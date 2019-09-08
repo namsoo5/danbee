@@ -59,6 +59,16 @@ class QuestionController extends Controller
                         "result"=>self::RESULT_SUCCESS
 		);
 	}
+	
+	#delete
+        public function deleteQuestionPost(){
+                $id = request('id', null);
+                $data = QUESTION::find($id);
+                $data->delete();
+                return array(
+                        "result"=>self::RESULT_SUCCESS
+                );
+        }	
 
 
 	#get answer
@@ -105,5 +115,5 @@ class QuestionController extends Controller
 			"data"=>$db
 		);
 	}
-*/
+ */
 }
