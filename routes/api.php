@@ -64,6 +64,9 @@ Route::get('notice/list', 'NoticeController@allnotice');
 #Route::get('notice/insert/{title}&{content}', 'NoticeController@insertnotice');
 #insert notice post
 Route::post('notice/insert', 'NoticeController@insertNoticePost');
+#delete notice post
+Route::post('notice/delete', 'NoticeController@deleteNoticePost');
+
 
 #all history
 Route::get('history/list', 'HistoryController@allHistory');

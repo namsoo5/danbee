@@ -55,4 +55,16 @@ class NoticeController extends Controller
 			"result"=>self::RESULT_SUCCESS
 		);
 	}
+
+	#delete notice
+	public function deleteNoticePost(){
+		$id = request('id', null);
+
+		$data = NOTICE::find($id);
+		$data->delete();
+
+		return array(
+			"result"=>self::RESULT_SUCCESS
+		);
+	}
 }
